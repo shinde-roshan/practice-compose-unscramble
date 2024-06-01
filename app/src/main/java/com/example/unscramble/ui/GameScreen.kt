@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +32,48 @@ fun GameScreen() {
             text = stringResource(id = R.string.app_name),
             style = MaterialTheme.typography.headlineSmall
         )
+        GameLayout(modifier = Modifier
+            .fillMaxWidth()
+            .padding(dimensionResource(id = R.dimen.padding_medium))
+        )
+    }
+}
+
+@Composable
+fun GameLayout(modifier: Modifier = Modifier) {
+    Card(modifier = modifier) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(id = R.dimen.padding_medium))
+        ) {
+            Text(
+                text = stringResource(id = R.string.word_count_v_v, 0, 10),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_small))
+                    .align(Alignment.End)
+            )
+            Text(
+                text = "Scrambled",
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+            )
+            Text(
+                text = stringResource(id = R.string.word_instruction),
+                style = MaterialTheme.typography.titleMedium
+            )
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = { Text(text = stringResource(id = R.string.text_field_instruction)) },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = dimensionResource(id = R.dimen.padding_medium))
+            )
+        }
     }
 }
 
