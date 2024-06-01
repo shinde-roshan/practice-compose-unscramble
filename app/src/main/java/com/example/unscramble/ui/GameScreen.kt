@@ -25,12 +25,14 @@ import com.example.unscramble.ui.theme.UnscrambleTheme
 
 @Composable
 fun GameScreen() {
+    val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(dimensionResource(R.dimen.padding_medium))
+            .padding(paddingMedium)
     ) {
         Text(
             text = stringResource(id = R.string.app_name),
@@ -39,13 +41,13 @@ fun GameScreen() {
         GameLayout(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.padding_medium))
+                .padding(paddingMedium)
         )
         Button(
             onClick = {},
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.padding_medium))
+                .padding(paddingMedium)
         ) {
             Text(
                 text = stringResource(id = R.string.next),
@@ -56,7 +58,7 @@ fun GameScreen() {
             onClick = {},
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
+                .padding(horizontal = paddingMedium)
         ) {
             Text(
                 text = stringResource(id = R.string.skip),
