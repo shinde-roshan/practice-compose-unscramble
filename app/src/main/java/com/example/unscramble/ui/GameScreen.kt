@@ -21,7 +21,7 @@ import com.example.unscramble.ui.theme.UnscrambleTheme
 
 @Composable
 fun GameScreen() {
-    Column (
+    Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -32,33 +32,37 @@ fun GameScreen() {
             text = stringResource(id = R.string.app_name),
             style = MaterialTheme.typography.headlineSmall
         )
-        GameLayout(modifier = Modifier
-            .fillMaxWidth()
-            .padding(dimensionResource(id = R.dimen.padding_medium))
+        GameLayout(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(id = R.dimen.padding_medium))
         )
     }
 }
 
 @Composable
 fun GameLayout(modifier: Modifier = Modifier) {
+    val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
+    val paddingSmall = dimensionResource(id = R.dimen.padding_small)
+
     Card(modifier = modifier) {
         Column(
+            verticalArrangement = Arrangement.spacedBy(paddingMedium),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.padding_medium))
+                .padding(paddingMedium)
         ) {
             Text(
                 text = stringResource(id = R.string.word_count_v_v, 0, 10),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.padding_small))
+                    .padding(paddingSmall)
                     .align(Alignment.End)
             )
             Text(
                 text = "Scrambled",
-                style = MaterialTheme.typography.headlineLarge,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+                style = MaterialTheme.typography.headlineLarge
             )
             Text(
                 text = stringResource(id = R.string.word_instruction),
@@ -71,7 +75,6 @@ fun GameLayout(modifier: Modifier = Modifier) {
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.padding_medium))
             )
         }
     }
@@ -81,7 +84,7 @@ fun GameLayout(modifier: Modifier = Modifier) {
 @Composable
 fun GamePreview() {
     UnscrambleTheme {
-        Surface (
+        Surface(
             modifier = Modifier.fillMaxSize()
         ) {
             GameScreen()
