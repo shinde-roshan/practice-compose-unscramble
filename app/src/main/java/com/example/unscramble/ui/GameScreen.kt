@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.unscramble.R
@@ -62,6 +63,10 @@ fun GameScreen() {
                 fontSize = 16.sp
             )
         }
+        GameScore(
+            score = 0,
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+        )
     }
 }
 
@@ -102,6 +107,18 @@ fun GameLayout(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
             )
         }
+    }
+}
+
+@Composable
+fun GameScore(score: Int, modifier: Modifier = Modifier) {
+    Card(modifier = modifier) {
+        Text(
+            text = stringResource(id = R.string.score_v, score),
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.headlineLarge,
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+        )
     }
 }
 
