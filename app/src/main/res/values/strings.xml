@@ -6,4 +6,8 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="score_v">Score: %d</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="you_scored_v">You Scored: %d</string>
+    <string name="play_again">Play Again</string>
+    <string name="exit">Exit</string>
 </resources>
