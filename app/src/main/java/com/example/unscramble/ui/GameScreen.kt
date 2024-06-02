@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -35,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -69,6 +72,7 @@ fun GameScreen(
             userGuess = gameViewModel.userGuess,
             isUserGuessWrong = gameUiState.isGuessedWordWrong,
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
+            onDone = { gameViewModel.checkUserGuess() },
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -116,6 +120,7 @@ fun GameLayout(
     userGuess: String,
     isUserGuessWrong: Boolean,
     onUserGuessChanged: (String) -> Unit,
+    onDone: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
@@ -167,7 +172,13 @@ fun GameLayout(
                             Text(text = stringResource(id = R.string.text_field_instruction))
                         }
                     },
-                    isError = isUserGuessWrong
+                    isError = isUserGuessWrong,
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { onDone() }
+                    )
                 )
             }
         }
