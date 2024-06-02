@@ -100,6 +100,12 @@ fun GameScreen(
             score = gameUiState.score,
             modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
         )
+        if (gameUiState.isGameOver) {
+            GreetingDialog(
+                score = gameUiState.score,
+                onPlayAgain = { gameViewModel.resetGame() }
+            )
+        }
     }
 }
 

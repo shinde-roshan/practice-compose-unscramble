@@ -1,6 +1,6 @@
 package com.example.unscramble.data
 
-const val MAX_NO_OF_WORDS = 10
+const val MAX_WORDS_PER_GAME = 10
 const val POINTS_PER_WORD = 10
 
 val WordsData: Set<String> = setOf(
