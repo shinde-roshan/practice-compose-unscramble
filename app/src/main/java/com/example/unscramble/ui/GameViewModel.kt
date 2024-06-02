@@ -49,6 +49,11 @@ class GameViewModel: ViewModel() {
     }
 
     fun updateUserGuess(guessedWord: String) {
+        if (_uiState.value.isGuessedWordWrong) {
+            _uiState.update {
+                it.copy(isGuessedWordWrong = false)
+            }
+        }
         userGuess = guessedWord
     }
 
