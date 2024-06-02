@@ -65,6 +65,8 @@ fun GameScreen(
         )
         GameLayout(
             scrambledWord = gameUiState.currentScrambledWord,
+            userGuess = gameViewModel.userGuess,
+            onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -102,6 +104,8 @@ fun GameScreen(
 @Composable
 fun GameLayout(
     scrambledWord: String,
+    userGuess: String,
+    onUserGuessChanged: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
@@ -144,8 +148,8 @@ fun GameLayout(
                         unfocusedContainerColor = colorScheme.surface,
                         disabledContainerColor = colorScheme.surface
                     ),
-                    value = "",
-                    onValueChange = {},
+                    value = userGuess,
+                    onValueChange = onUserGuessChanged,
                     label = { Text(text = stringResource(id = R.string.text_field_instruction)) },
                     isError = false
                 )
