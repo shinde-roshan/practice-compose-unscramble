@@ -26,6 +26,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,8 +42,11 @@ import com.example.unscramble.R
 import com.example.unscramble.ui.theme.UnscrambleTheme
 
 @Composable
-fun GameScreen() {
+fun GameScreen(
+    gameViewModel: GameViewModel = GameViewModel()
+) {
     val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
+    val gameUiState by gameViewModel.uiState.collectAsState()
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -58,6 +63,7 @@ fun GameScreen() {
             style = MaterialTheme.typography.headlineSmall
         )
         GameLayout(
+            scrambledWord = gameUiState.currentScrambledWord,
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -93,7 +99,10 @@ fun GameScreen() {
 }
 
 @Composable
-fun GameLayout(modifier: Modifier = Modifier) {
+fun GameLayout(
+    scrambledWord: String,
+    modifier: Modifier = Modifier
+) {
     val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
     val paddingSmall = dimensionResource(id = R.dimen.padding_small)
 
@@ -118,7 +127,7 @@ fun GameLayout(modifier: Modifier = Modifier) {
                         .align(Alignment.End)
                 )
                 Text(
-                    text = "Scrambled",
+                    text = scrambledWord,
                     style = MaterialTheme.typography.headlineLarge
                 )
                 Text(
