@@ -62,7 +62,7 @@ class GameViewModel: ViewModel() {
     }
 
     fun checkUserGuess() {
-        if (userGuess.equals(currentWord, true)) {
+        if (userGuess.trim().equals(currentWord, true)) {
             updateGameStateToNextWord(
                 updatedScore = _uiState.value.score.plus(POINTS_PER_WORD)
             )
