@@ -3,7 +3,9 @@
     <string name="word_count_v_v">%d / %d</string>
     <string name="word_instruction">Unscramble the word using all letters.</string>
     <string name="text_field_instruction">Enter your word</string>
+    <string name="wrong_guess">Wrong guess</string>
     <string name="next">Next</string>
+    <string name="submit">Submit</string>
     <string name="skip">Skip</string>
     <string name="score_v">Score: %d</string>
     <string name="congratulations">Congratulations</string>

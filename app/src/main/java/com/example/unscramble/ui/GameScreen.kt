@@ -65,7 +65,9 @@ fun GameScreen(
         )
         GameLayout(
             scrambledWord = gameUiState.currentScrambledWord,
+            wordCount = gameUiState.currentWordCount,
             userGuess = gameViewModel.userGuess,
+            isUserGuessWrong = gameUiState.isGuessedWordWrong,
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             modifier = Modifier
                 .fillMaxWidth()
@@ -73,13 +75,13 @@ fun GameScreen(
                 .padding(paddingMedium)
         )
         Button(
-            onClick = {},
+            onClick = { gameViewModel.checkUserGuess() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(paddingMedium)
         ) {
             Text(
-                text = stringResource(id = R.string.next),
+                text = stringResource(id = R.string.submit),
                 fontSize = 16.sp
             )
         }
@@ -95,7 +97,7 @@ fun GameScreen(
             )
         }
         GameScore(
-            score = 0,
+            score = gameUiState.score,
             modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
         )
     }
@@ -104,7 +106,9 @@ fun GameScreen(
 @Composable
 fun GameLayout(
     scrambledWord: String,
+    wordCount: Int,
     userGuess: String,
+    isUserGuessWrong: Boolean,
     onUserGuessChanged: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -122,7 +126,7 @@ fun GameLayout(
                     .padding(paddingMedium)
             ) {
                 Text(
-                    text = stringResource(id = R.string.word_count_v_v, 0, 10),
+                    text = stringResource(id = R.string.word_count_v_v, wordCount, 10),
                     style = MaterialTheme.typography.titleMedium,
                     color = colorScheme.onPrimary,
                     modifier = Modifier
@@ -150,8 +154,14 @@ fun GameLayout(
                     ),
                     value = userGuess,
                     onValueChange = onUserGuessChanged,
-                    label = { Text(text = stringResource(id = R.string.text_field_instruction)) },
-                    isError = false
+                    label = {
+                        if (isUserGuessWrong) {
+                            Text(text = stringResource(id = R.string.wrong_guess))
+                        } else {
+                            Text(text = stringResource(id = R.string.text_field_instruction))
+                        }
+                    },
+                    isError = isUserGuessWrong
                 )
             }
         }
