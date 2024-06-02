@@ -86,7 +86,7 @@ fun GameScreen(
             )
         }
         OutlinedButton(
-            onClick = {},
+            onClick = { gameViewModel.skipCurrentWord() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = paddingMedium)

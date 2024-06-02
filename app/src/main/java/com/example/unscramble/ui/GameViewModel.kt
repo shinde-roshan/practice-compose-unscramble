@@ -51,22 +51,32 @@ class GameViewModel: ViewModel() {
         userGuess = guessedWord
     }
 
+    fun skipCurrentWord() {
+        updateGameStateToNextWord(updatedScore = _uiState.value.score)
+    }
+
     fun checkUserGuess() {
         if (userGuess.equals(currentWord, true)) {
-            _uiState.update {
-                it.copy(
-                    currentScrambledWord = pickRandomWordAndShuffle(),
-                    isGuessedWordWrong = false,
-                    score = it.score.plus(POINTS_PER_WORD),
-                    currentWordCount = it.currentWordCount.inc()
-                )
-            }
-            updateUserGuess("")
+            updateGameStateToNextWord(
+                updatedScore = _uiState.value.score.plus(POINTS_PER_WORD)
+            )
         } else {
             _uiState.update {
                 it.copy(isGuessedWordWrong = true)
             }
         }
+    }
+
+    private fun updateGameStateToNextWord(updatedScore: Int) {
+        _uiState.update {
+            it.copy(
+                currentScrambledWord = pickRandomWordAndShuffle(),
+                isGuessedWordWrong = false,
+                score = updatedScore,
+                currentWordCount = it.currentWordCount.inc()
+            )
+        }
+        updateUserGuess("")
     }
 
 }
