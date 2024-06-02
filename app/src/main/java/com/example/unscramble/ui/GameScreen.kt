@@ -38,12 +38,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unscramble.R
 import com.example.unscramble.ui.theme.UnscrambleTheme
 
 @Composable
 fun GameScreen(
-    gameViewModel: GameViewModel = GameViewModel()
+    gameViewModel: GameViewModel = viewModel()
 ) {
     val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
     val gameUiState by gameViewModel.uiState.collectAsState()
