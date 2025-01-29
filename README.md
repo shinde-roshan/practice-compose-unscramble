@@ -2,7 +2,7 @@
 
 **The Unscramble** is a single-player word scrambler game where the goal is to unscramble the letters of a word.
 
-This project was built as part of the [Android Basics with Compose](https://developer.android.com/courses/android-basics-compose/course) course and focuses on modern Android development practices using **Jetpack Compose**, **ViewModel**, **StateFlow**, and **UDF (User Defined Functions)** patterns.
+This project was built as part of the [Android Basics with Compose](https://developer.android.com/courses/android-basics-compose/course) course and focuses on modern Android development practices using **Jetpack Compose**, **ViewModel**, **StateFlow**, and **UDF (Unidirectional Data Flow)** patterns.
 
 ## Key Learnings
 
